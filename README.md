@@ -85,7 +85,11 @@ quicksort(arr, 0, 4)
 => [1, 2, 2, 3, 4]
 ```
 
-### Bonus: Choose the Middle Element as the Pivot
+### Bonus: Reduce the Number of Swaps
+
+Our algorithm for `partition` always performs two swaps when a number higher than the pivot is encountered. Can you modify the algorithm so that it performs only one swap in this case? It should then perform one final swap to put the pivot in the correct location before returning the pivot index. Take a look at the gif at the top of this README if you need to see it in action.
+
+### Super Bonus: Choose the Middle Element as the Pivot
 
 Can you modify the algorithm to use the middle element as the pivot? There's more than one way to achieve this functionality! What about using the median of several values? Or a random element?
 
