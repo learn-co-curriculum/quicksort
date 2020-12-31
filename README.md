@@ -29,20 +29,20 @@ We'll implement the quicksort algorithm in two parts. First we'll make the helpe
 The helper method `partition` takes three arguments: the `array` to operate upon, and a `low` and a `high`, which are integers denoting which portion of the array requires sorting. It returns the final index of the pivot element and performs the following operations:
 
 1. Choose the rightmost element as the pivot 
-2. Declare a variable called `pivotIndex` and set it equal to the value of `end`
-3. Iterate over the array starting at the `low` index and ending at the `high` index
-    * If an element to the left of the pivot is less than the pivot, continue
+2. Declare a variable called `pivotIndex` or `pivot_index` and set it equal to the value of `high`
+3. Iterate over the array starting at the `low` index and ending at the `pivotIndex`
+    * If an element to the left of the pivot is less than or equal to the pivot, continue
     * If an element to the left of the pivot is greater than the pivot: 
         * Swap it with the element just before the pivot, and then swap the pivot with that element (i.e. the pivot will now be at its original index - 1)
         * Decrement the `pivotIndex`, since the pivot has been moved to the left by one place
     * If an element is equal to the pivot, leave it in place
 4. Return the `pivotIndex`
 
-Your function should sort the array in place. This means you should not be creating a new array at any point.
+Your function should sort the array in place. This means you should not be creating a new array at any point. You'll also need to decide how to best iterate over the array. Think about which element needs to be compared to the pivot at any given time.
 
 ```
 array = [3, 2, 1, 4]
-partition([3, 2, 1, 4], 0, 3)
+partition(array, 0, 3)
 => 3
 // array = [3, 2, 1, 4]
 
@@ -57,7 +57,7 @@ partition(array, 0, 5)
 // array = [2, -10, 1, 0, 3, 7]
 
 array = [2, -10, 7, 0, 1, 3]
-partition([2, -10, 7, 0, 1, 3], 1, 3)
+partition(array, 1, 3)
 => 2
 // array = [2, -10, 0, 7, 1, 3]
 ```
