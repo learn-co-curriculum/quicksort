@@ -22,6 +22,73 @@ We can improve the performance of our quicksort algorithm by choosing the middle
 
 ## Implement Quicksort
 
+We'll implement the quicksort algorithm in two parts. First we'll make the helper function that sorts elements to the right or left of the pivot. Once that's working, we'll work on the main function that calls the helper function. Our tests will test the main function. It'll be up to you to ensure the helper function works.
+
+### 1. `partition(array, low, high)`
+
+The helper method `partition` takes three arguments: the `array` to operate upon, and a `low` and a `high`, which are integers denoting which portion of the array requires sorting. It returns the final index of the pivot element and performs the following operations:
+
+1. Choose the rightmost element as the pivot 
+2. Declare a variable called `pivotIndex` and set it equal to the value of `end`
+3. Iterate over the array starting at the `low` index and ending at the `high` index
+    * If an element to the left of the pivot is less than the pivot, continue
+    * If an element to the left of the pivot is greater than the pivot: 
+        * Swap it with the element just before the pivot, and then swap the pivot with that element (i.e. the pivot will now be at its original index - 1)
+        * Decrement the `pivotIndex`, since the pivot has been moved to the left by one place
+    * If an element is equal to the pivot, leave it in place
+4. Return the `pivotIndex`
+
+Your function should sort the array in place. This means you should not be creating a new array at any point.
+
+```
+array = [3, 2, 1, 4]
+partition([3, 2, 1, 4], 0, 3)
+=> 3
+// array = [3, 2, 1, 4]
+
+array = [3, 2, 1, 2]
+partition(array, 0, 3)
+=> 2
+// array = [1, 2, 2, 3]
+
+array = [2, -10, 7, 0, 1, 3]
+partition(array, 0, 5)
+=> 4
+// array = [2, -10, 1, 0, 3, 7]
+
+array = [2, -10, 7, 0, 1, 3]
+partition([2, -10, 7, 0, 1, 3], 1, 3)
+=> 2
+// array = [2, -10, 0, 7, 1, 3]
+```
+
+To determine whether your function is working, check if all elements lower than the pivot are to the pivot's left, while all elements greater than the pivot are to its right. Be sure to look at the correct subset of the array when using values other than 0 and the array's length - 1 as the `low` and `high`. Finally, the method will return the final index of the pivot element.
+
+### 2. `quicksort(array, low, high)`
+
+This is the main method that returns a sorted array. Once again, it sorts the array in place - it does not create any new arrays. It achieves this by partitioning the array using the helper method from earlier, and then recursively processing all elements to the left of the pivot and all elements to the right of the pivot. The steps are:
+
+1. If `low` is less than `high`
+    * Partition the array using the `low` and `high` values
+    * Store the result of calling `partition` in a variable (recall that the result is the final index of the pivot)
+    * Recurse with the left side of the array (use `low` and `high` to specify the starting and stopping points)
+    * Recurse with the right side of the array (use `low` and `high` to specify the starting and stopping points)
+2. Else return the array
+
+```
+arr = [3, 2, 1, 4]
+quicksort(arr, 0, 3)
+=> [1, 2, 3, 4]
+
+arr = [1, 2, 2, 3, 4]
+quicksort(arr, 0, 4)
+=> [1, 2, 2, 3, 4]
+```
+
+### Bonus: Choose the Middle Element as the Pivot
+
+Can you modify the algorithm to use the middle element as the pivot? There's more than one way to achieve this functionality! What about using the median of several values? Or a random element?
+
 Use the language of your choosing. We've included starter files for some languages where you can pseudocode, explain your solution and code.
 
 ## Before you start coding:
