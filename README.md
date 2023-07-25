@@ -25,7 +25,7 @@ and right sides until the whole list is sorted.
 
 In the diagram below, notice how the number 4, which is the pivot, is sorted to
 the correct location before the recursive call is made (branching denotes the
-recursive calls). First, we check if 1 is more than 4. It isn't so we move to
+recursive calls). First, we check if 3 is more than 4. It isn't so we move to
 the next value: 7. 7 is more than 4, so it is swapped with the element before 4
 (which is 5), and 4 is then swapped with 7. This continues until every element
 before the pivot has been evaluated.
